@@ -1,0 +1,54 @@
+.uikit-select {
+    width: 200px;
+    height: auto;
+    cursor: pointer;
+    margin: 0 5px 5px 0;
+    p.title {
+        font-size: 14px;
+        color: $GREY2;
+        margin: 0;
+    }
+    div.text-value {
+        font-size: 14px;
+        position: relative;
+        width: auto;
+        margin: 0;
+        border-radius: 5px;
+        border: 1px solid $GREY3;
+        padding: 5px;
+        p.value-active {
+            display: inline-block;
+            margin: 0;
+        }
+        div.value-content {
+            border-radius: 5px;
+            background: $WHITE;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            visibility: hidden;
+            max-height: 0px;
+            overflow-y: scroll;
+            p {
+                margin: 0;
+                padding: 5px;
+            }
+            p.active {
+                background: $PRIMARY_COLOR;
+                color: $WHITE;
+                top: 0;
+            }
+            p:hover {
+                background: $PRIMARY_COLOR;
+                color: $WHITE;
+            }
+            z-index: 2;  
+            transition: all .3s ease;
+        }
+        div.value-content.show {
+            visibility: visible;
+            max-height: 200px;
+        }
+    }
+}

@@ -8,7 +8,9 @@
     border: 1px solid $GREY3;
     border-radius: 5px;
     cursor: pointer;
+    background: $WHITE2;
     div.items-card {
+        position: relative;
         margin: 0;
         border-bottom: 1px solid $GREY1;
         padding: 5px 0;
@@ -22,6 +24,7 @@
             font-size: 14px;
             color: $BLACK;
         }
+        z-index: 1;
     }
     div.items-card:last-child {
         border: 0;
@@ -31,7 +34,7 @@
         width: 70%;
         top: 0;
         right: 0;
-        z-index: -1;
+        z-index: 0;
         transition: all .5s ease;
     }
 }

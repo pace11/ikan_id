@@ -9,7 +9,7 @@ import Axios from 'axios'
  * @param {Array, Object} items
  * }
  */
-const ListData = {
+const ListOptionArea = {
   initialState: {
     isLoading: true,
     isError: false,
@@ -28,18 +28,16 @@ const ListData = {
     state.initialState.errorMessage = payload
   }),
 
-  getListData: thunk(async (actions, payload) => {
+  getListOptionArea: thunk(async (actions, payload) => {
     try {
       const { data, status, statusText } = await Axios({
         method: 'GET',
-        url: `${process.env.REACT_APP_API_URL}/list`,
+        url: `${process.env.REACT_APP_API_URL}/option_area`,
       })
       if (status !== 200) {
         actions.fetchError(statusText)
       } else {
-        actions.fetchAction(
-          data.filter((item) => item.uuid && item.komoditas),
-        )
+        actions.fetchAction(data)
       }
     } catch (error) {
       actions.fetchError(error.response.statusText)
@@ -47,4 +45,4 @@ const ListData = {
   }),
 }
 
-export default ListData
+export default ListOptionArea

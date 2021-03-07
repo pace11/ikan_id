@@ -6,10 +6,27 @@
         width: auto;
         div.wrapper-content {
             padding: 10px 10rem;
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            grid-auto-rows: minmax(min-content, max-content);
-            grid-gap: 10px;
+            div.row-filter {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 0 0 15px 0;
+                position: sticky;
+                top: 0;
+                z-index: 5;
+                background: $WHITE;
+                padding: 5px 0;
+                div.all-filter {
+                    display: flex;
+                    flex-direction: row;
+                }
+            }
+            div.row-content {
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                grid-auto-rows: minmax(min-content, max-content);
+                grid-gap: 10px;
+            }
         }
     }  
 }
@@ -29,7 +46,9 @@
         div.uikit-layout-content {
             div.wrapper-content {
                 padding: 10px;
-                grid-template-columns: repeat(3, 1fr);
+                div.row-content {
+                    grid-template-columns: repeat(3, 1fr);
+                }
             }
         }  
     }
