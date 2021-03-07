@@ -4,6 +4,7 @@ import { StoreProvider } from 'easy-peasy'
 import store from './redux/store'
 import routes from './routes'
 import './App.scss'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (

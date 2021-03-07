@@ -22,6 +22,11 @@ const ListData = {
     state.initialState.isLoading = false
   }),
 
+  fetchActionByPayload: action((state, payload) => {
+    state.initialState.items = payload
+    state.initialState.items = state.initialState.isLoading = false
+  }),
+
   fetchError: action((state, payload) => {
     state.initialState.isLoading = true
     state.initialState.isError = true
@@ -39,6 +44,29 @@ const ListData = {
       } else {
         actions.fetchAction(
           data.filter((item) => item.uuid && item.komoditas),
+        )
+      }
+    } catch (error) {
+      actions.fetchError(error.response.statusText)
+    }
+  }),
+
+  getListDataByPayload: thunk(async (actions, payload) => {
+    try {
+      const { data, status, statusText } = await Axios({
+        method: 'GET',
+        url: `${process.env.REACT_APP_API_URL}/list`,
+      })
+      if (status !== 200) {
+        actions.fetchError(statusText)
+      } else {
+        actions.fetchAction(
+          data.filter(
+            (item) =>
+              item.uuid &&
+              item.komoditas &&
+              item.komoditas === payload,
+          ),
         )
       }
     } catch (error) {
