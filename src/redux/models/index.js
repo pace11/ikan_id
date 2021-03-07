@@ -1,5 +1,7 @@
 import ListData from './get-list-data'
 
-export default {
+const Models = {
   ListData,
 }
+
+export default Models
