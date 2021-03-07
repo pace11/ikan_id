@@ -1,9 +1,25 @@
-import './App.scss'
 import React from 'react'
-import Layout from './layout'
+import { BrowserRouter, Route } from 'react-router-dom'
+import routes from './routes'
+import './App.scss'
 
 function App() {
-  return <Layout>Content</Layout>
+  return (
+    <BrowserRouter>
+      {routes.map((route, idx) => (
+        <Route
+          key={String(idx)}
+          path={route.path}
+          exact={route.exact}
+          component={(props) => (
+            <route.layout>
+              <route.component {...props} />
+            </route.layout>
+          )}
+        />
+      ))}
+    </BrowserRouter>
+  )
 }
 
 export default App
