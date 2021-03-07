@@ -1,0 +1,8 @@
+.uikit-layout {
+    width: 100%; 
+    div.row-content {
+        height: calc(100vh - 3.5rem);
+        overflow-y: scroll;
+        width: auto;
+    }  
+}

@@ -1,7 +1,9 @@
+import './App.scss'
+import React from 'react'
+import Layout from './layout'
+
 function App() {
-  return (
-    <div>App</div>
-  )
+  return <Layout>Content</Layout>
 }
 
 export default App
