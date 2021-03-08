@@ -15,7 +15,6 @@ function SectionAddData({
   handleAddData,
   statePostData,
 }) {
-  console.log('data ===>', statePostData)
   return (
     <BottomSheet show={show} onClick={onClick}>
       <Input
