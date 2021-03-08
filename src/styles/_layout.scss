@@ -16,7 +16,7 @@
                 div.filter-content {
                     display: flex;
                     justify-content: space-between;
-                    align-items: center;
+                    align-items: flex-end;
                     flex-direction: row;
                 }
                 div.row-btn {
@@ -57,13 +57,30 @@
     }
 }
 
+@media (max-width: 768px) {
+    .uikit-layout {
+        div.uikit-layout-content {
+            div.wrapper-content {
+                padding: 10px;
+                div.row-content {
+                    div.content-card {
+                        grid-template-columns: repeat(4, 1fr);
+                    }
+                }
+            }
+        }  
+    }
+}
+
 @media (max-width: 425px) {
     .uikit-layout {
         div.uikit-layout-content {
             div.wrapper-content {
                 padding: 10px;
                 div.row-content {
-                    grid-template-columns: repeat(3, 1fr);
+                    div.content-card {
+                        grid-template-columns: repeat(2, 1fr);
+                    }
                 }
             }
         }  

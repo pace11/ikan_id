@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Efishery - Toko Ikan",
+  "name": "Aplikasi untuk melihat komoditas ikan",
   "icons": [
     {
       "src": "favicon.ico",

@@ -2,7 +2,7 @@
 lihat-lihat data ikan di indonesia yuk
 
 ## DEPLOY
-- [ ] netlify segera !!
+- [x] 
 
 ## Cara menjalankan aplikasi
  - `git clone` repository ini
@@ -13,6 +13,7 @@ lihat-lihat data ikan di indonesia yuk
  - [x] Reactjs dengan `create-react-app`
  - [x] Styling dengan `SCSS`
  - [x] Redux menggunakan `easy-peasy`
+ - [x] service worker dan shorcut app untuk install
 
 
 
