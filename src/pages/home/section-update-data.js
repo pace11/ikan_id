@@ -5,6 +5,7 @@ import Select from '../../components/select'
 import Button from '../../components/button'
 
 function SectionUpdateData({
+  loading,
   show,
   onClick,
   value,
@@ -20,7 +21,7 @@ function SectionUpdateData({
             label="Komoditas"
             placeholder="Isikan komiditas ..."
             value={value.komoditas}
-            onChange={(e) => handleUpdateDataChange(e, 'commodity')}
+            onChange={(e) => handleUpdateDataChange(e, 'komoditas')}
           />
           <Select
             label="Provinsi"
@@ -28,7 +29,9 @@ function SectionUpdateData({
             items={JSON.parse(
               window.localStorage.getItem('LIST_OPTION_AREA'),
             ).map((item) => item.province)}
-            onClick={(e) => handleUpdateDataChange(e, 'province')}
+            onClick={(e) =>
+              handleUpdateDataChange(e, 'area_provinsi')
+            }
           />
           <Select
             label="Kota"
@@ -36,9 +39,9 @@ function SectionUpdateData({
             items={JSON.parse(
               window.localStorage.getItem('LIST_OPTION_AREA'),
             )
-              .filter((item) => item.province === value.area_kota)
+              .filter((item) => item.province === value.area_provinsi)
               .map((item) => item.city)}
-            onClick={(e) => handleUpdateDataChange(e, 'city')}
+            onClick={(e) => handleUpdateDataChange(e, 'area_kota')}
           />
           <Select
             label="Size"
@@ -57,8 +60,8 @@ function SectionUpdateData({
             value={value.price}
             onChange={(e) => handleUpdateDataChange(e, 'price')}
           />
-          <Button block onClick={handleUpdateData}>
-            Update
+          <Button block onClick={handleUpdateData} disabled={loading}>
+            {loading ? `Loading ...` : `Update`}
           </Button>
         </BottomSheet>
       )}

@@ -5,6 +5,7 @@ import Select from '../../components/select'
 import Button from '../../components/button'
 
 function SectionAddData({
+  loading,
   show,
   onClick,
   value,
@@ -12,7 +13,9 @@ function SectionAddData({
   valueOptionArea,
   handleAddDataChange,
   handleAddData,
+  statePostData,
 }) {
+  console.log('data ===>', statePostData)
   return (
     <BottomSheet show={show} onClick={onClick}>
       <Input
@@ -62,8 +65,8 @@ function SectionAddData({
         value={value.price}
         onChange={(e) => handleAddDataChange(e, 'price')}
       />
-      <Button block onClick={handleAddData}>
-        Simpan
+      <Button block onClick={handleAddData} disabled={loading}>
+        {loading ? `Loading ...` : `Update`}
       </Button>
     </BottomSheet>
   )

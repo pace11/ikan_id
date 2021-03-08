@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useStoreDispatch, useStoreState } from 'easy-peasy'
+import { PostUpdate, PostAdd } from '../../api'
 import SectionFilter from './section-filter'
 import SectionCard from './section-card'
 import SectionAddData from './section-add-data'
@@ -8,6 +9,14 @@ import SectionUpdateData from './section-update-data'
 function Home() {
   const dispatch = useStoreDispatch()
   const [show, setShow] = useState(false)
+  const [loading, setLoading] = useState({
+    update: false,
+    add: false,
+  })
+  const [errorMessage, setErrorMessage] = useState({
+    update: '',
+    add: '',
+  })
   const [showEdit, setShowEdit] = useState(false)
   const [editData, setEditData] = useState()
   const [addData, setAddData] = useState({
@@ -46,13 +55,17 @@ function Home() {
         ),
       )
     }
-  }, [dispatch.ListData])
+  }, [
+    dispatch.ListData,
+    dispatch.ListOptionArea,
+    dispatch.ListOptionSize,
+  ])
 
   useEffect(() => {
     if (filter.commodity) {
       dispatch.ListData.getListDataByPayload(filter)
     }
-  }, [filter])
+  }, [filter, dispatch.ListData])
 
   const HandleFilter = (val, key) => {
     setFilter({
@@ -68,8 +81,38 @@ function Home() {
     })
   }
 
+  const HandleUpdateDataChange = (val, key) => {
+    setEditData({
+      ...editData,
+      [key]: val,
+    })
+  }
+
   const HandleSubmitData = () => {
-    dispatch.PostData.postAddData(addData)
+    setLoading({
+      ...loading,
+      add: true,
+    })
+    PostAdd(addData).then((res) => {
+      setLoading({
+        ...loading,
+        add: false,
+      })
+      const { status, message } = res
+      if (status !== 200) {
+        setErrorMessage({
+          ...errorMessage,
+          add: message,
+        })
+      } else {
+        setErrorMessage({
+          ...errorMessage,
+          add: '',
+        })
+        setShowEdit(false)
+        window.location.href = '/'
+      }
+    })
   }
 
   const HandleClickEdit = (val) => {
@@ -78,6 +121,7 @@ function Home() {
     )[0]
     setEditData(value)
     setShowEdit((showEdit) => !showEdit)
+    console.log('datanya ===>', editData)
   }
 
   const HandleClearFilter = () => {
@@ -86,6 +130,33 @@ function Home() {
       commodity: '',
     })
     dispatch.ListData.getListData()
+  }
+
+  const HandleUpdateData = () => {
+    setLoading({
+      ...loading,
+      update: true,
+    })
+    PostUpdate(editData).then((res) => {
+      setLoading({
+        ...loading,
+        update: false,
+      })
+      const { status, message } = res
+      if (status !== 200) {
+        setErrorMessage({
+          ...errorMessage,
+          update: message,
+        })
+      } else {
+        setErrorMessage({
+          ...errorMessage,
+          update: '',
+        })
+        setShowEdit(false)
+        window.location.href = '/'
+      }
+    })
   }
 
   return (
@@ -101,6 +172,7 @@ function Home() {
         handleClickEdit={HandleClickEdit}
       />
       <SectionAddData
+        loading={loading.add}
         value={addData}
         valueSize={stateListOptionSize}
         valueOptionArea={stateListOptionArea}
@@ -108,14 +180,16 @@ function Home() {
         onClick={() => setShow((show) => !show)}
         handleAddDataChange={HandleAddDataChange}
         handleAddData={() => HandleSubmitData()}
+        statePostData={statePostData}
       />
       <SectionUpdateData
+        loading={loading.update}
         value={editData}
         valueSize={stateListOptionSize}
         show={showEdit}
         onClick={() => setShowEdit((showEdit) => !showEdit)}
-        // handleUpdateDataChange
-        // handleUpdateData
+        handleUpdateDataChange={HandleUpdateDataChange}
+        handleUpdateData={() => HandleUpdateData()}
       />
     </React.Fragment>
   )
