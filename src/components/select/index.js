@@ -15,7 +15,7 @@ function Select({ label, onClick, value, items }) {
           <input
             className="value-active"
             value={value}
-            defaultValue={value}
+            onChange={() => {}}
           />
           <div className={`value-content ${show ? 'show' : ''}`}>
             {items &&

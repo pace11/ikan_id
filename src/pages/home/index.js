@@ -41,20 +41,6 @@ function Home() {
     dispatch.ListData.getListData()
     dispatch.ListOptionArea.getListOptionArea()
     dispatch.ListOptionSize.getListOptionSize()
-
-    const COMMODITY = window.localStorage.getItem('LIST_COMMODITY')
-
-    if (!COMMODITY) {
-      window.localStorage.setItem(
-        'LIST_COMMODITY',
-        JSON.stringify(
-          stateListData &&
-            stateListData.initialState.items.map(
-              (item) => item.komoditas,
-            ),
-        ),
-      )
-    }
   }, [
     dispatch.ListData,
     dispatch.ListOptionArea,
@@ -121,7 +107,6 @@ function Home() {
     )[0]
     setEditData(value)
     setShowEdit((showEdit) => !showEdit)
-    console.log('datanya ===>', editData)
   }
 
   const HandleClearFilter = () => {
@@ -163,6 +148,7 @@ function Home() {
     <React.Fragment>
       <SectionFilter
         filter={filter}
+        valueComodity={stateListData}
         handleFilter={HandleFilter}
         handleClearFilter={HandleClearFilter}
         handleShowAddData={() => setShow((show) => !show)}
@@ -186,6 +172,7 @@ function Home() {
         loading={loading.update}
         value={editData}
         valueSize={stateListOptionSize}
+        valueOptionArea={stateListOptionArea}
         show={showEdit}
         onClick={() => setShowEdit((showEdit) => !showEdit)}
         handleUpdateDataChange={HandleUpdateDataChange}

@@ -3,23 +3,31 @@ import Select from '../../components/select'
 import Button from '../../components/button'
 
 function SectionFilter({
+  valueComodity,
   filter,
   handleFilter,
-  handleClearFilter,
   handleShowAddData,
+  handleClearFilter,
 }) {
   return (
     <React.Fragment>
       <div className="row-filter">
         <div className="filter-content">
-          <Select
-            label="Komoditas"
-            value={filter.commodity}
-            items={JSON.parse(
-              window.localStorage.getItem('LIST_COMMODITY'),
-            )}
-            onClick={(e) => handleFilter(e, 'commodity')}
-          />
+          <div>
+            <Select
+              label="Komoditas"
+              value={filter.commodity}
+              items={
+                valueComodity &&
+                valueComodity.initialState &&
+                valueComodity.initialState.items &&
+                valueComodity.initialState.items.map(
+                  (item) => item.komoditas,
+                )
+              }
+              onClick={(e) => handleFilter(e, 'commodity')}
+            />
+          </div>
           <Button
             onClick={() => handleClearFilter()}
             disabled={filter.commodity ? false : true}

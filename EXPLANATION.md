@@ -1,0 +1,7 @@
+# PENJELASAN DARI DESIGN
+ - tampilan dari aplikasi saya buatkan 1 halaman penuh dengan action scroll yang active hanya di content memberi tujuan untuk lebih medudahkan 
+ user dalam melakukan explore di aplikasi, jadi user cukup memperhatikan pada 1 tampilan yang sama.
+ - filter dengan komuditas akan memudahkan user ketika ingin melalkukan explorari yang berfokus kepada komuditas yang ingin di lihat. user pun bisa mengganti tipe komoditas yang ingin di lihat.  
+ - menu bottom sheet untuk add dan update data. ini bertujuan untuk memberikan kesan minimalis pada aplikasi. user tidak perlu melakukan refresh page untuk pindah ke url add atau update data, user cukup dimudahkan dengan menu bottom sheet yang muncul dari bawah lalu mengarahkan user untuk mengisi data yang akan di simpan ataupun di update.
+ - dengan hanya digunakannya 1 page dalam mengeksplorasi data dari komuditas yang telah disediakan. cost yang dikeluarkan oleh user jadi tidak terlalu banyak. tidak perlu banyak melakukan perpindahan page, refresh page yang berlebihan dan lebih ramah dengan koneksi jaringan.
+ - namun untuk itu semua kita bisa kembali lagi dengan behaviour yang di inginkan user. dengan melakukan pendekatan, kuisioner yang mampu menampung aspirasi dari user dalam menggunakan aplikasi, akan sangat membantu dalam proses development dan improvement dari tampilan yang telah dihasilkan.

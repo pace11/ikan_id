@@ -10,6 +10,7 @@ function SectionUpdateData({
   onClick,
   value,
   valueSize,
+  valueOptionArea,
   handleUpdateDataChange,
   handleUpdateData,
 }) {
@@ -26,9 +27,13 @@ function SectionUpdateData({
           <Select
             label="Provinsi"
             value={value.area_provinsi}
-            items={JSON.parse(
-              window.localStorage.getItem('LIST_OPTION_AREA'),
-            ).map((item) => item.province)}
+            items={
+              valueOptionArea.initialState &&
+              valueOptionArea.initialState.items &&
+              valueOptionArea.initialState.items.map(
+                (item) => item.province,
+              )
+            }
             onClick={(e) =>
               handleUpdateDataChange(e, 'area_provinsi')
             }
@@ -36,11 +41,13 @@ function SectionUpdateData({
           <Select
             label="Kota"
             value={value.area_kota}
-            items={JSON.parse(
-              window.localStorage.getItem('LIST_OPTION_AREA'),
-            )
-              .filter((item) => item.province === value.area_provinsi)
-              .map((item) => item.city)}
+            items={
+              valueOptionArea.initialState &&
+              valueOptionArea.initialState.items &&
+              valueOptionArea.initialState.items
+                .filter((item) => item.province === value.province)
+                .map((item) => item.city)
+            }
             onClick={(e) => handleUpdateDataChange(e, 'area_kota')}
           />
           <Select
