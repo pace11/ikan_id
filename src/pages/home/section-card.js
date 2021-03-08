@@ -1,6 +1,7 @@
 import React from 'react'
 import Card from '../../components/card'
 import { PulseLoader } from 'react-spinners'
+import { currency } from '../../helpers/utils'
 
 function SectionCard({ list, handleClickEdit }) {
   return (
@@ -19,7 +20,7 @@ function SectionCard({ list, handleClickEdit }) {
                 province={item.area_provinsi}
                 city={item.area_kota}
                 size={item.size}
-                price={item.price}
+                price={currency(item.price)}
                 date={item.tgl_parsed}
                 handleClickEdit={() => handleClickEdit(item.uuid)}
               />

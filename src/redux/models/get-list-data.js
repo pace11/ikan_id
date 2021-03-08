@@ -47,7 +47,7 @@ const ListData = {
         )
       }
     } catch (error) {
-      actions.fetchError(error.response.statusText)
+      actions.fetchError(error.response)
     }
   }),
 
@@ -70,7 +70,7 @@ const ListData = {
         )
       }
     } catch (error) {
-      actions.fetchError(error.response.statusText)
+      actions.fetchError(error.response)
     }
   }),
 }
