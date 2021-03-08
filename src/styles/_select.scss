@@ -1,8 +1,8 @@
 .uikit-select {
-    width: 200px;
+    width: auto;
     height: auto;
     cursor: pointer;
-    margin: 0 5px 5px 0;
+    padding: 5px 0;
     p.title {
         font-size: 14px;
         color: $GREY2;
@@ -11,17 +11,18 @@
     div.text-value {
         font-size: 14px;
         position: relative;
-        width: auto;
         margin: 0;
-        border-radius: 5px;
-        border: 1px solid $GREY3;
-        padding: 5px;
-        p.value-active {
-            display: inline-block;
-            margin: 0;
+        input.value-active {
+            width: 100%;
+            border-radius: 5px;
+            height: 33px;
+            outline: 0;
+            border: 1px solid $GREY3;
+            padding: 5px;
         }
         div.value-content {
             border-radius: 5px;
+            border: 1px solid $GREY3;
             background: $WHITE;
             position: absolute;
             top: 0;

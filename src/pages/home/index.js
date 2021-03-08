@@ -2,54 +2,57 @@ import React, { useEffect, useState } from 'react'
 import { useStoreDispatch, useStoreState } from 'easy-peasy'
 import SectionFilter from './section-filter'
 import SectionCard from './section-card'
+import SectionAddData from './section-add-data'
+import SectionUpdateData from './section-update-data'
 
 function Home() {
   const dispatch = useStoreDispatch()
-  const [filter, setFilter] = useState({
+  const [show, setShow] = useState(false)
+  const [showEdit, setShowEdit] = useState(false)
+  const [editData, setEditData] = useState()
+  const [addData, setAddData] = useState({
     commodity: '',
     province: '',
     city: '',
+    size: '',
+    price: '',
+  })
+  const [filter, setFilter] = useState({
+    commodity: '',
   })
 
   const {
     ListData: stateListData,
     ListOptionArea: stateListOptionArea,
+    ListOptionSize: stateListOptionSize,
+    PostData: statePostData,
   } = useStoreState((globalState) => globalState)
 
   useEffect(() => {
     dispatch.ListData.getListData()
     dispatch.ListOptionArea.getListOptionArea()
-    if (
-      stateListData.initialState.items &&
-      stateListOptionArea.initialState.items
-    ) {
-      const COMMODITY = window.localStorage.getItem('LIST_COMMODITY'),
-        OPTION_AREA = window.localStorage.getItem('LIST_OPTION_AREA'),
-        listData = stateListData && stateListData.initialState.items,
-        listOptionArea =
-          stateListOptionArea &&
-          stateListOptionArea.initialState.items
+    dispatch.ListOptionSize.getListOptionSize()
 
-      if (!COMMODITY) {
-        window.localStorage.setItem(
-          'LIST_COMMODITY',
-          JSON.stringify(listData.map((item) => item.komoditas)),
-        )
-      }
+    const COMMODITY = window.localStorage.getItem('LIST_COMMODITY')
 
-      if (!OPTION_AREA) {
-        window.localStorage.setItem(
-          'LIST_OPTION_AREA',
-          JSON.stringify(listOptionArea),
-        )
-      }
+    if (!COMMODITY) {
+      window.localStorage.setItem(
+        'LIST_COMMODITY',
+        JSON.stringify(
+          stateListData &&
+            stateListData.initialState.items.map(
+              (item) => item.komoditas,
+            ),
+        ),
+      )
     }
-  }, [
-    dispatch.ListData,
-    dispatch.ListOptionArea,
-    stateListData,
-    stateListOptionArea,
-  ])
+  }, [dispatch.ListData])
+
+  useEffect(() => {
+    if (filter.commodity) {
+      dispatch.ListData.getListDataByPayload(filter)
+    }
+  }, [filter])
 
   const HandleFilter = (val, key) => {
     setFilter({
@@ -58,10 +61,62 @@ function Home() {
     })
   }
 
+  const HandleAddDataChange = (val, key) => {
+    setAddData({
+      ...addData,
+      [key]: val,
+    })
+  }
+
+  const HandleSubmitData = () => {
+    dispatch.PostData.postAddData(addData)
+  }
+
+  const HandleClickEdit = (val) => {
+    const value = stateListData.initialState.items.filter(
+      (item) => item.uuid === val,
+    )[0]
+    setEditData(value)
+    setShowEdit((showEdit) => !showEdit)
+  }
+
+  const HandleClearFilter = () => {
+    setFilter({
+      ...filter,
+      commodity: '',
+    })
+    dispatch.ListData.getListData()
+  }
+
   return (
     <React.Fragment>
-      <SectionFilter filter={filter} handleFilter={HandleFilter} />
-      <SectionCard list={stateListData} />
+      <SectionFilter
+        filter={filter}
+        handleFilter={HandleFilter}
+        handleClearFilter={HandleClearFilter}
+        handleShowAddData={() => setShow((show) => !show)}
+      />
+      <SectionCard
+        list={stateListData}
+        handleClickEdit={HandleClickEdit}
+      />
+      <SectionAddData
+        value={addData}
+        valueSize={stateListOptionSize}
+        valueOptionArea={stateListOptionArea}
+        show={show}
+        onClick={() => setShow((show) => !show)}
+        handleAddDataChange={HandleAddDataChange}
+        handleAddData={() => HandleSubmitData()}
+      />
+      <SectionUpdateData
+        value={editData}
+        valueSize={stateListOptionSize}
+        show={showEdit}
+        onClick={() => setShowEdit((showEdit) => !showEdit)}
+        // handleUpdateDataChange
+        // handleUpdateData
+      />
     </React.Fragment>
   )
 }

@@ -1,0 +1,26 @@
+.uikit-input {
+    width: auto;
+    height: auto;
+    padding: 5px 0;
+    font-size: 14px;
+    p.title {
+        font-size: 14px;
+        color: $GREY2;
+        margin: 0;
+    }
+    input {
+        width: 100%;
+        height: 33px;
+        outline: 0;
+        border: 1px solid $GREY3;
+        padding: 5px;
+        border-radius: 5px;
+        color: #000;
+    }
+    input:focus {
+        border: 1px solid $PRIMARY_COLOR;
+    }
+    input::placeholder {
+        color: $GREY3;
+    }
+}

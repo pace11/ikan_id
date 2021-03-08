@@ -1,0 +1,23 @@
+.uikit-button {
+    width: auto;
+    height: auto;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background: $PRIMARY_COLOR;
+    color: $WHITE;
+    letter-spacing: 1px;
+    outline: none;
+    border: 0px;
+    cursor: pointer;
+    margin: 5px 0;
+    text-align: center;
+}
+.uikit-button.block {
+    width: 100%;
+}
+.uikit-button:active {
+    opacity: 0.6;
+}
+.uikit-button:disabled {
+    opacity: 0.5;
+}

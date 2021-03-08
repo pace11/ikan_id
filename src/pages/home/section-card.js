@@ -1,7 +1,7 @@
 import React from 'react'
 import Card from '../../components/card'
 
-function SectionCard({ list }) {
+function SectionCard({ list, handleClickEdit }) {
   return (
     <div className="row-content">
       {list && list.initialState.isLoading ? (
@@ -17,6 +17,7 @@ function SectionCard({ list }) {
             size={item.size}
             price={item.price}
             date={item.tgl_parsed}
+            handleClickEdit={() => handleClickEdit(item.uuid)}
           />
         ))
       )}

@@ -1,43 +1,41 @@
 import React from 'react'
 import Select from '../../components/select'
+import Button from '../../components/button'
 
-function SectionFilter({ filter, handleFilter }) {
+function SectionFilter({
+  filter,
+  handleFilter,
+  handleClearFilter,
+  handleShowAddData,
+}) {
   return (
-    <div className="row-filter">
-      <div className="all-filter">
-        <Select
-          label="Komoditas"
-          value={filter.commodity}
-          items={JSON.parse(
-            window.localStorage.getItem('LIST_COMMODITY'),
-          )}
-          onClick={(e) => handleFilter(e, 'commodity')}
-        />
-        <Select
-          label="Provinsi"
-          value={filter.province}
-          items={JSON.parse(
-            window.localStorage.getItem('LIST_OPTION_AREA'),
-          ).map((item) => item.province)}
-          onClick={(e) => handleFilter(e, 'province')}
-        />
-        {filter.province && (
+    <React.Fragment>
+      <div className="row-filter">
+        <div className="filter-content">
           <Select
-            label="Kota"
-            value={filter.city}
+            label="Komoditas"
+            value={filter.commodity}
             items={JSON.parse(
-              window.localStorage.getItem('LIST_OPTION_AREA'),
-            )
-              .filter((item) => item.province === filter.province)
-              .map((item) => item.city)}
-            onClick={(e) => handleFilter(e, 'city')}
+              window.localStorage.getItem('LIST_COMMODITY'),
+            )}
+            onClick={(e) => handleFilter(e, 'commodity')}
           />
-        )}
+          <Button
+            onClick={() => handleClearFilter()}
+            disabled={filter.commodity ? false : true}
+          >
+            Bersihkan Filter
+          </Button>
+        </div>
+        <div className="row-btn">
+          <div className="row-btn">
+            <Button onClick={() => handleShowAddData()}>
+              Tambah Data
+            </Button>
+          </div>
+        </div>
       </div>
-      <div className="type-list">
-        <p>type show</p>
-      </div>
-    </div>
+    </React.Fragment>
   )
 }
 

@@ -1,0 +1,61 @@
+.bottom-sheet-filter {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: #000000;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 9;
+    transition: all .5s ease;
+}
+.bottom-sheet-filter.show {
+    visibility: visible;
+    opacity: 0.7;
+}
+.uikit-bottom-sheet {
+    position: fixed;
+    box-sizing: border-box;
+    display: flex;
+    visibility: hidden;
+    max-height: 0px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: $WHITE;
+    border-radius: 15px 15px 0 0;
+    border-top: 3px solid $PRIMARY_COLOR;
+    z-index: 10;
+    transition: all .5s ease;
+    overflow-y: scroll;
+    div.bottom-sheet-content {
+        width: 100%;
+        padding: 10px 10rem;
+        div {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+    }
+}
+.uikit-bottom-sheet.show {
+    visibility: visible;
+    max-height: 400px;
+}
+
+@media (max-width: 1024px) {
+    .uikit-bottom-sheet {
+        div.bottom-sheet-content {
+            padding: 10px;
+        }
+    }
+}
+
+@media (max-width: 425px) {
+    .uikit-bottom-sheet {
+        div.bottom-sheet-content {
+            padding: 10px;
+        }
+    }
+}

@@ -37,11 +37,24 @@
         z-index: 0;
         transition: all .5s ease;
     }
+    button {
+        visibility: hidden;
+        position: absolute;
+        bottom: 0;
+        right: 5px;
+        z-index: 4;
+        opacity: 0;
+        transition: all .3s ease-in-out;
+    }
 }
 .uikit-card:hover {
     border: 1px solid $PRIMARY_COLOR;
     box-shadow: inset 0 0 2px $PRIMARY_COLOR;
     img {
         width: 85%;
+    }
+    button {
+        opacity: 1;
+        visibility: visible;
     }
 }

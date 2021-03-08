@@ -7,20 +7,26 @@
         div.wrapper-content {
             padding: 10px 10rem;
             div.row-filter {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin: 0 0 15px 0;
+                
+                margin: 0;
                 position: sticky;
                 top: 0;
                 z-index: 5;
                 background: $WHITE;
                 padding: 5px 0;
-                div.all-filter {
+                div.filter-content {
                     display: flex;
+                    justify-content: space-between;
+                    align-items: center;
                     flex-direction: row;
                 }
+                div.row-btn {
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                }
             }
+            
             div.row-content {
                 display: grid;
                 grid-template-columns: repeat(5, 1fr);

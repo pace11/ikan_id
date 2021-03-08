@@ -12,7 +12,11 @@ function Select({ label, onClick, value, items }) {
           className="text-value"
           onClick={() => setShow((show) => !show)}
         >
-          <p className="value-active">{value}</p>
+          <input
+            className="value-active"
+            value={value}
+            defaultValue={value}
+          />
           <div className={`value-content ${show ? 'show' : ''}`}>
             {items &&
               items

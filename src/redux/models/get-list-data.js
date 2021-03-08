@@ -65,7 +65,7 @@ const ListData = {
             (item) =>
               item.uuid &&
               item.komoditas &&
-              item.komoditas === payload,
+              item.komoditas === payload.commodity,
           ),
         )
       }
